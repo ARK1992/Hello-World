@@ -20,19 +20,19 @@ def p_tag_to_file(file_path, url):
         file.close()
     except urllib.error.HTTPError as e:
         with open('HTTPerr.txt', 'a') as f:
-            f.write('問題が発生：{}\n'.format(e.code))
+            f.write('several issues arise：{}\n'.format(e.code))
     except urllib.error.URLError as e:
         with open('URLerr.txt', 'a') as f:
-            f.write('問題が発生：{}\n'.format(e.reason))
-    
+            f.write('several issues arise：{}\n'.format(e.reason))
+
 with open('url_list.txt', 'rt') as fr:
     for url in fr:
         while True:
             url = fr.readline().strip('\n')
             if not url:
-                break 
+                break
             try:
                 p_tag_to_file("p_tag.txt", url)
             except requests.exceptions.RequestException as e:
                 with open('err.txt', 'a') as fe:
-                    fe.write('問題が発生：{}'.format(e))
+                    fe.write('several issues arise：{}'.format(e))
